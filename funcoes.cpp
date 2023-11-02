@@ -26,8 +26,8 @@ int tamanho(stack<string> pilha){
     return contador -1 ;
 }
 
-void restauraPilha(stack<string> &pilha1, stack<string> &pilha2 ){
-    while(!pilha1.empty()){
+void invertePilha(stack<string> pilha1, stack<string> pilha2 ){ // funcao para inverter ou restaurar uma pilha
+    while(!pilha1.empty()){        
         string topo = pilha1.top();
         pilha2.push(topo);
         pilha1.pop();
