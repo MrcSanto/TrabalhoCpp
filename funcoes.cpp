@@ -23,7 +23,7 @@ int tamanho(stack<string> pilha){
         pilha.pop();
         contador++;
     }
-    return contador-1;
+    return contador -1 ;
 }
 
 void restauraPilha(stack<string> &pilha1, stack<string> &pilha2 ){
@@ -33,39 +33,33 @@ void restauraPilha(stack<string> &pilha1, stack<string> &pilha2 ){
         pilha1.pop();
     }
 }
-/* ver pq nao funciona
-bool verificaPlaca(const stack<string> &estacionamento){
+    
+bool verificaCarro(const stack<string> &estacionamento, string placa){
     stack<string> pilha = estacionamento;
     while(!pilha.empty()){
-        string placa = pilha.top();
+        string topo = pilha.top();
         pilha.pop();
-
-        stack<string> comparacao = pilha;
-        while(!comparacao.empty()){
-            if(placa == comparacao.top()){
-                return true;
-            }
-            comparacao.pop();
+        if(placa == topo){
+            return true;
         }
     }
     return false;
 }
-*/
-void retiraCarro(stack<string> &estacionamento, stack<string> &manobra, string placa){
-    int contador = -1;
-    while(!estacionamento.empty()){
-        string elemento = estacionamento.top();
-        estacionamento.pop();
-        manobra.push(elemento);
-        ++contador;
-        if(elemento == placa){
-            cout << "Tem " << contador << " carro(s) na sua frente para retirar" << endl;
-            estacionamento.pop();
-        }else{
-            cout << "Não há tal carro estacionado!! Tente novamente." << endl;
-            break;
-        }
-    }
-    restauraPilha(manobra, estacionamento);
 
+void retiraCarro(stack<string> &estacionamento, stack<string> &manobra, string placa){
+    if(verificaCarro(estacionamento, placa)){
+        while(!estacionamento.empty()){
+            string topo = estacionamento.top();
+            if(placa == topo){
+               cout << "Tem " << tamanho(manobra)+1 << " carro(s) na sua frente para retirar." << endl;
+               estacionamento.pop();
+               break;
+            }
+            manobra.push(topo); //adiciona a outra pilha
+            estacionamento.pop();
+       }
+       restauraPilha(manobra, estacionamento);
+    }else{
+        cout << placa << "nao esta estacionado aqui" << endl;
+    }
 }

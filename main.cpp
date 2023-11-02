@@ -10,10 +10,10 @@ int main() {
 
     while(true){
         
-        cout << "0 Para Sair\n";
-        cout << "1 Registrar Entrada\n";
-        cout << "2 Registrar Saida\n";
-        cout << "3 Consultar Vaga\n";
+        cout << "*  0 Para Sair\n";
+        cout << "*  1 Registrar Entrada\n";
+        cout << "*  2 Registrar Saida\n";
+        cout << "*  3 Consultar Vaga\n";
         cout << endl;
 
         cin >> opcao;
@@ -35,20 +35,22 @@ int main() {
                         cout << "Ainda há " << size << " vagas sobrando!!\nInsira a placa do seu carro:";
                         cin.ignore();
                         getline(cin, placaCarro);
-                        //if(verificaPlaca(estacionamento)){ //ver dps funciona parcialmente
-                          //  cout << "Ja existe uma placa igual! Tente novamente." << endl;
-                            //break;
-                        //}else{
+                        if(verificaCarro(estacionamento, placaCarro)){ //ver dps funciona parcialmente
+                            cout << "Ja existe uma carro igual! Tente novamente." << endl;
+                            cout << endl;
+                            break;
+                        }else{
                             estacionamento.push(placaCarro);
                             cout << endl;
-                        //}
+                        }
                     }
                 }
                 break;
             case 2:
                 {
-                    if(estacionamento.size() == 0){
+                    if(estacionamento.empty()){
                         cout << "Estacionamento Vazio!!" << endl;
+                        cout << endl;
                         break;
                     }else{
 
@@ -75,6 +77,14 @@ int main() {
                         estacionamento.push(topo);
                     }
                     cout << endl;
+                }
+                break;
+            case 4:
+                while(!manobra.empty()){
+
+                    string topo = manobra.top();
+                    cout << topo << endl;
+                    manobra.pop();
                 }
                 break;
             default:
