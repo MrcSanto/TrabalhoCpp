@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <regex>
 using namespace std;
 
 void cppPark(){ // funcao para imprimir a logo cppPark
@@ -15,6 +16,15 @@ void cppPark(){ // funcao para imprimir a logo cppPark
     "\n"
     "\n";
 
+}
+
+bool ex_regular(string placa){ //funcao de expressao regular para a insercao de placas
+    regex padrao_placa("^[a-zA-Z]{3}-\\d{3}$");
+    if(regex_match(placa, padrao_placa)){ // funcao da propria biblioteca que valida de acordo com a expressao escrita
+        return false; // se a placa estiver de acordo retorna 0 para o if na main
+    }else{
+        return true; // se nao estiver de acordo retorna true para executar a condicional na main
+    }
 }
 
 int tamanho(stack<string> pilha){ //funcao int para retornar o tamanho de uma pilha
@@ -52,6 +62,7 @@ void retiraCarro(stack<string> &estacionamento, stack<string> &manobra, string p
             string topo = estacionamento.top();
             if(placa == topo){ 
                cout << "Tem " << tamanho(manobra)+1 << " carro(s) na sua frente para retirar." << endl; //usa funcao tamanho
+               cout << endl;
                estacionamento.pop(); // carro nao esta mais na area de manobra, foi embora
                break;
             }

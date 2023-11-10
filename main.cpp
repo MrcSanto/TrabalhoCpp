@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack> //importando biblioteca stack -- pilha 
 #include "funcoes.cpp" // importa a minha biblioteca de funçoes
+#include <regex>
 using namespace std;
 
 int main() {
@@ -39,6 +40,10 @@ int main() {
                         getline(cin, placaCarro);
                         if(verificaCarro(estacionamento, placaCarro)){ //usa funcao, se for true executa as linhas de codigo abaixo
                             cout << "Ja existe uma carro igual! Tente novamente." << endl;
+                            cout << endl;
+                            break;
+                        }else if(ex_regular(placaCarro)){
+                            cout << "O modelo da sua placa não é compativel! Tente novamente." << endl;
                             cout << endl;
                             break;
                         }else{ // se for false, da continuidade a entrada de informações do carro
