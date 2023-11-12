@@ -18,7 +18,7 @@ void cppPark(){ // funcao para imprimir a logo cppPark
 
 }
 
-bool ex_regular(string placa){ //funcao de expressao regular para a insercao de placas
+bool ex_regular(string &placa){ //funcao de expressao regular para a insercao de placas
     regex padrao_placa("^[a-zA-Z]{3}-\\d{3}$");
     if(regex_match(placa, padrao_placa)){ // funcao da propria biblioteca que valida de acordo com a expressao escrita
         return false; // se a placa estiver de acordo retorna 0 para o if na main
@@ -27,7 +27,7 @@ bool ex_regular(string placa){ //funcao de expressao regular para a insercao de 
     }
 }
 
-int tamanho(stack<string> pilha){ //funcao int para retornar o tamanho de uma pilha
+int tamanho(stack<string> pilha){ //funcao int para retornar o tamanho de uma pilha, passagem por parametro
     int contador = 0;             // vai ser usado na main e em outras funçoẽs
     while(!pilha.empty()){
         pilha.pop();
@@ -44,7 +44,7 @@ void restauraPilha(stack<string> &pilha1, stack<string> &pilha2 ){ // funcao par
     }
 }
     
-bool verificaCarro(const stack<string> &estacionamento, string placa){ //funcao para verificar se no input de placas há alguma repetida
+bool verificaCarro(const stack<string> &estacionamento, string &placa){ //funcao para verificar se no input de placas há alguma repetida
     stack<string> pilha = estacionamento;
     while(!pilha.empty()){
         string topo = pilha.top();
@@ -56,7 +56,7 @@ bool verificaCarro(const stack<string> &estacionamento, string placa){ //funcao 
     return false; // se for falso nao tem carros iguais, logo o programa continua a inserir os dados
 }
 
-void retiraCarro(stack<string> &estacionamento, stack<string> &manobra, string placa){ // funcao usada para retirar os carros do estacionamento
+void retiraCarro(stack<string> &estacionamento, stack<string> &manobra, string &placa){ // funcao usada para retirar os carros do estacionamento
     if(verificaCarro(estacionamento, placa)){ // usa a funcao verificaCarro para validar se existe tal carro no input
         while(!estacionamento.empty()){
             string topo = estacionamento.top();
